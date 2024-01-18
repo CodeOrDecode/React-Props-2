@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMPONENT AND PROPS REVISION PROBLEM 2</title>
+    <style>
+        .stylechild {
+            border: 1px solid blue;
+            padding: 10px;
+            margin: 10px;
+        }
+        .updatedstyle{
+            padding: 25px;
+            margin: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+
+</html>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+
+<script type="text/babel">
+
+
+    function User({ name, age, email }) {
+        return <div>
+            <h2>Name is : {name}</h2>
+            <h3>Age is : {age}</h3>
+            <h4>Email is : {email}</h4>
+        </div>
+
+    }
+
+    function ScoreCard({ score }) {
+        return <h3>Score is : {score}</h3>
+    }
+
+    function ContainerWithBlueBorder(props) {
+        return <div className="updatedstyle" style={{border:`1px solid ${props.bordercolor}`}}>{props.children}</div>
+    }
+
+    function App() {
+        let children = "Hitesh"
+        let element = <p>this is one experiment</p>
+        let element2 = <h2>this is one experiment no 2</h2>
+        return <>
+            <User name="Ritesh" age={26} email="janaritesh17@gmail.com" />
+            <ScoreCard score={120} />
+            <ContainerWithBlueBorder children={children} bordercolor="blue" />
+
+            <ContainerWithBlueBorder>
+                <User name="Ritesh" age={26} email="janaritesh17@gmail.com" />
+            </ContainerWithBlueBorder>
+
+
+            <ContainerWithBlueBorder>
+                <ScoreCard score={120} />
+            </ContainerWithBlueBorder>
+            <ContainerWithBlueBorder children={element} bordercolor="green" />
+            <ContainerWithBlueBorder children={element2} bordercolor="orange" />
+        </>
+    }
+
+
+
+    let dom = ReactDOM.createRoot(document.getElementById("root"));
+    dom.render(<App />);
+</script>
